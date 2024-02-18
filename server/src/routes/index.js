@@ -1,16 +1,14 @@
-const { Router } = require('express');
+//+ Requerimientos de los controladores
+
 const getAllDogs = require('../controllers/getAllDogs');
-const getDogsById = require('../controllers/getDogById');
 const getDogsByName = require('../controllers/getDogByName');
+const getDogsById = require('../controllers/getDogById');
 const postDog = require('../controllers/postDog');
 const getAllTemperaments = require('../controllers/getAllTemperaments');
 
+//+ Requerimiento del Router
 
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
-
-//+ Requerimientos de los controladores
-
+const { Router } = require('express');
 const router = Router();
 
 //+ Dogs info

@@ -1,16 +1,37 @@
 //+ Requerimientos
-require('dotenv').config();
-const { Sequelize } = require('sequelize');
+/*
+  Requerimos el paquete dotenv y llamamos a su funcion config para leer el archivo .env y cargarlos en el objeto process.env
+*/
+require("dotenv").config();
+/*
+  Requerimos la libreria Sequelize
+*/
+const { Sequelize } = require("sequelize");
+/*
+  Requerimos fs, nativo de Node, este nos permite manipular los archivos o directorios
+*/
 const fs = require('fs');
+/*
+  Requerimos path, nativo de Node, nos permite trabajar con las rutas de archivos y directorios
+*/
 const path = require('path');
+/*
+  Extraemos las variables globales del objeto process
+*/
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
 
+/*
+  Creando la base de datos
+*/
 const Database = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/dogs`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
+/*
+  Extrae el nombre del archivo de la ruta en la que estamos
+*/
 const basename = path.basename(__filename);
 
 const modelDefiners = [];

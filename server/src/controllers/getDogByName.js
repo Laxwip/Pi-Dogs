@@ -1,11 +1,26 @@
+//+ Requerimientos
+/*
+  Libreria para realizar solicitudes http
+*/
 const axios = require("axios");
+/*
+  Requerimos los datos de entornos guardados en nuestro archivo .env
+*/
 require('dotenv').config();
-const {
-  API_KEY
-} = process.env; 
-const { Sequelize } = require("sequelize");
-const Op = Sequelize.Op;
+/*
+  Extraemos la API_KEY
+*/
+const { API_KEY } = process.env;  
+/*
+  Requerimos la libreria Sequelize y los Operadores (Op)
+*/
+const { Sequelize , Op} = require("sequelize");
+/*
+  Requerimos el Modelo Dog
+*/
 const { Dog } = require("../db");
+
+//+ Funcion
 
 const getDogsByName = async (req, res) => {
   try {
@@ -13,9 +28,16 @@ const getDogsByName = async (req, res) => {
 
     
 
-    const { data: dataApi = [] } = await axios.get(`https://api.thedogapi.com/v1/breeds/search?q=${name}`)
+    const { data: dataApi = [] } = await axios.get(`https://api.thedogapi.com/v1/breeds/search?q=${name}`, {
+      /*
+        Realizado con headers como buena practica para evitar exponer datos sensibles con los registros de servidores
+      */
+      headers: {
+        "x-api-key": API_KEY
+      }
+    })
 
-    const { data: dataDb = [] } = await Dog.findAll({
+    const dataDb = await Dog.findAll({
       where: {
         nombre: {
           /*
@@ -26,11 +48,16 @@ const getDogsByName = async (req, res) => {
       },
     })
 
-    const AllMatches = [ dataApi, dataDb ]
+    // const AllMatches = [ dataApi, dataDb ]
 
-    res.status(200).json(AllMatches)
+    const response = {
+      apiResults: dataApi,
+      dbResults: dataDb
+    }
+
+    res.status(200).json(response)
   } catch (error) {
-    console.error(error)
+    res.status(400).send("Algo salió mal con la busqueda del perro.")
   }
 }
 
