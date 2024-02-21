@@ -30,26 +30,49 @@ const getDogsById = async (req, res) => {
         "x-api-key": API_KEY,
       }
     })
-
-  let dataDb = await Dog.findOne({ 
-    where: { id: idParam } ,
-    include: [{
-      model: Temperament,
-      attributes: ["nombre"],
-      through: { attributes: [] }
+    
+    const newTemperament = dataApi?.temperament?.split(",")
+    const newImage = `https://cdn2.thedogapi.com/images/${dataApi?.reference_image_id}.jpg`
+    const newDataApi = {
+      id: dataApi.id,
+      imagen: newImage,
+      nombre: dataApi.name,
+      altura: dataApi.height.metric,
+      peso: dataApi.weight.metric,
+      temperamentos: newTemperament,
+      añosDeVida: dataApi.life_span,
     }
-    ]
-  })
 
-  /*
-    Operador de fusion nula, verifica si hay un valor null y lo reemplaza con un objeto vacio
-  */
-  dataDb = dataDb || {};
 
-  const response = {
-    apiResults: dataApi,
-    dbResults: dataDb
-  }
+    let dataDb = await Dog.findOne({ 
+      where: { id: idParam } ,
+      include: [{
+        model: Temperament,
+        attributes: ["nombre"],
+        through: { attributes: [] }
+      }
+      ]
+    })
+
+    /*
+      Operador de fusion nula, verifica si hay un valor null y lo reemplaza con un objeto vacio
+    */
+    dataDb = dataDb || {};
+
+    const newData = {
+      id: dataDb.id,
+      imagen: dataDb.imagen,
+      nombre: dataDb.nombre,
+      altura: dataDb.altura,
+      peso: dataDb.peso,
+      temperaments: dataDb.temperaments?.map(temperament => temperament.nombre),
+      añosDeVida: dataDb.añosDeVida,
+    };
+
+    const response = {
+      apiResults: newDataApi,
+      dbResults: newData
+    }
 
   res.status(200).json(response)
   } catch (error) {
