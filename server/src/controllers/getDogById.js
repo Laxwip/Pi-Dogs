@@ -41,6 +41,7 @@ const getDogsById = async (req, res) => {
       peso: dataApi.weight.metric,
       temperamentos: newTemperament,
       añosDeVida: dataApi.life_span,
+      origen: "api"
     }
 
 
@@ -67,6 +68,7 @@ const getDogsById = async (req, res) => {
       peso: dataDb.peso,
       temperaments: dataDb.temperaments?.map(temperament => temperament.nombre),
       añosDeVida: dataDb.añosDeVida,
+      origen: "db"
     };
 
     const response = {

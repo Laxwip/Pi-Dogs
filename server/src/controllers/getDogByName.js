@@ -57,23 +57,27 @@ const getDogsByName = async (req, res) => {
       */
       newTemperamentApi = dog?.temperament?.split(",")
       const newDog = {
-        id: dog.id,
-        imagen: dog.image.url,
-        nombre: dog.name,
-        altura: dog.height.metric,
-        peso: dog.weight.metric,
+        id: dog?.id,
+        imagen: dog?.image?.url,
+        nombre: dog?.name,
+        altura: dog?.height?.metric,
+        peso: dog?.weight?.metric,
         temperamentos: newTemperamentApi,
-        añosDeVida: dog.life_span,
+        añosDeVida: dog?.life_span,
+        origen: "api"
       }
       newDataApi.push(newDog)
     })
 
-    const dataDb = await Dog.findAll({
-      where: {
-        nombre: {
+    const newDataDb = []
+
+    if(name !== ""){
+      const dataDb = await Dog.findAll({
+        where: {
+          nombre: {
           /*
             Operador de sequelize que permite hacer una busqueda dentro de los strings sin diferenciar entre mayus o minus
-          */
+            */
           [Op.iLike]: `%${name}%`,
         },
       },
@@ -88,30 +92,29 @@ const getDogsByName = async (req, res) => {
           },
         },
       ],
-    })
+      })
+      dataDb?.map(dog => {
+        const newData = {
+          id: dog.id,
+          imagen: dog.imagen,
+          nombre: dog.nombre,
+          altura: dog.altura,
+          peso: dog.peso,
+          temperamentos: dog.temperaments?.map(temperament => temperament.nombre),
+          añosDeVida: dog.añosDeVida,
+          origen: "db"
+        };
+        newDataDb.push(newData)
+      })
+    }
 
-    const newDataDb = []
-
-    dataDb.map(dog => {
-      const newData = {
-        id: dog.id,
-        imagen: dog.imagen,
-        nombre: dog.nombre,
-        altura: dog.altura,
-        peso: dog.peso,
-        temperaments: dog.temperaments?.map(temperament => temperament.nombre),
-        añosDeVida: dog.añosDeVida,
-      };
-      newDataDb.push(newData)
-    })
 
     
-
-
+  
     const response = {
       apiResults: newDataApi,
       dbResults: newDataDb,
-    }
+    };
 
     res.status(200).json(response)
   } catch (error) {
