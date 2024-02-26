@@ -1,9 +1,9 @@
 .cardContenedor{
-  width: 250px;
-  height: 700px;
+  width: 300px;
+  height: 500px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   border: 1px solid white;
   margin: 5px;
@@ -13,8 +13,8 @@
 }
 
 .cardImg{
-  width: 150px;
-  height: 150px;
+  width: 300px;
+  height: 300px;
   overflow: hidden;
   border: 1px solid white;
 
@@ -25,3 +25,20 @@
   }
 }
 
+.temperamentosContenedor{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 90%;
+  height: 15%;
+}
+
+.temperamento{
+  background-color: rgb(255, 255, 255);
+  color: rgb(21, 33, 9);
+  margin: 1px 1px;
+  border-radius: 5px;
+  padding: 0.5px 4px;
+  height: 35%;
+  font-size: 0.8em;
+}

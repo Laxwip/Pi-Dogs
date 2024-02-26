@@ -1,0 +1,50 @@
+.navbarContenedor{
+  background-color: orange;
+  width: 90%;
+  height: 10%;
+  margin-bottom: 2%;
+  margin-top: 2%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 50px 50px 50px 50px;
+}
+.searchInput{
+  background-color: rgb(255, 255, 255);
+  border: none;
+  width: 30%;
+  height: 45%;
+  border-radius: 10px;
+  padding-left: 20px;
+  color: black;
+}
+h1{
+  color: white;
+  padding-right: 2%;
+}
+
+.searchInput:focus{
+  outline: none;
+  border-color: none;
+}
+
+.huella{
+  width: 8%;
+}
+
+.navBarIzquierda{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  padding-left: 5%;
+}
+.navBarDerecha{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  padding-right: 5%;
+}

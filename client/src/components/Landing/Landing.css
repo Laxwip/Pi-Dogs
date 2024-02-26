@@ -57,14 +57,17 @@
   .img1{
     position: relative;
     top: 10%;
+    border: 3px solid white;
   }
   .img2{
     position: relative;
     left: 20%;
+    border: 3px solid white;
   }
   .img3{
     position: relative;
     bottom: 10%;
+    border: 3px solid white;
   }
 }
 

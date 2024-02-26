@@ -1,19 +1,22 @@
 import React from 'react'
 import "./Card.css"
+import { Link } from 'react-router-dom'
 
-export default function Card({imagen, nombre, temperamentos, peso}) {
+export default function Card({id, imagen, nombre, temperamentos, peso, origen}) {
   return (
     <div className='cardContenedor'>
-      <h3>{nombre}</h3>
       <div className='cardImg'>
-        <img src={imagen ? imagen : ""} alt="" width={"100px"}/>
+        <Link to={`/detail/${origen}/${id}`}>
+          <img src={imagen ? imagen : ""} alt="" width={"100px"}/>
+        </Link>
       </div>
-      <div>
+      <h3>{nombre}</h3>
+      <div className='temperamentosContenedor'>
         {temperamentos?.map((temperamento, index) => (
-          <p key={index}>{temperamento}</p>
+          <span className="temperamento" key={index}>{temperamento}</span>
         ))}
       </div>
-      <p>Peso: {peso}</p>
+      <span>Peso: {peso} kg</span>
     </div>
   )
 }
