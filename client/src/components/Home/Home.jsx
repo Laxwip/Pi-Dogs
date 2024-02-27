@@ -6,6 +6,7 @@ export default function Home({ dogsResult ,name}) {
   return (
     <div className='homeContenedor'>
       <Cards dogsResult = { dogsResult } name = {name}></Cards>
+      <div className='espaciado'></div>
     </div>
   )
 }

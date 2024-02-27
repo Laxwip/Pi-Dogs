@@ -16,7 +16,10 @@ export default function Card({id, imagen, nombre, temperamentos, peso, origen}) 
           <span className="temperamento" key={index}>{temperamento}</span>
         ))}
       </div>
-      <span>Peso: {peso} kg</span>
+      <div className='CardPeso'>
+            <img src="../../public/peso.png" alt="icono de peso" width={"30px"} title='Peso'/>
+            <span>{peso} kg</span>
+      </div>
     </div>
   )
 }

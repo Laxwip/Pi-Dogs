@@ -2,4 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+.espaciado{
+  height: 70px;
 }

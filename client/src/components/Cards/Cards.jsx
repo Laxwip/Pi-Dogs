@@ -83,9 +83,10 @@ export default function Cards({ dogsResult , name}) {
           ) : (
             <h1>No hay coincidencias</h1>
           )}
-          <div>
-            <button onClick={prevPage} disabled={page === 1}>Anterior</button>
-            <button onClick={nextPage} disabled={endIndex >= renderizado.length}>Siguiente</button>
+          <div className='buttonPrevSig'>
+            <button onClick={prevPage} disabled={page === 1}>⬅</button>
+            <span className='textPage'>{page}</span>
+            <button onClick={nextPage} disabled={endIndex >= renderizado.length}>⮕</button>
           </div>
         </>
         )

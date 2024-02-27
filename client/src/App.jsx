@@ -1,7 +1,7 @@
 import './App.css'
 import Home from './components/Home/Home'
 import Landing from './components/Landing/Landing'
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, Link } from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar'
 import { useState } from 'react'
 import axios from "axios"
@@ -49,7 +49,14 @@ function App() {
 
         <Route
         path='/detail/:origen/:id'
-        element={<Details></Details>}
+        element={<div className='Details'>
+          <div className='ButtonHome'>
+            <Link to = {"/home"}>
+              <button>⬅</button>
+            </Link>
+          </div>
+          <Details></Details>
+          </div>}
         ></Route>
 
       </Routes>

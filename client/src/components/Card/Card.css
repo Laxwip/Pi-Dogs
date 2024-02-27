@@ -1,6 +1,6 @@
 .cardContenedor{
   width: 300px;
-  height: 500px;
+  height: 550px;
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
@@ -25,12 +25,22 @@
   }
 }
 
+.CardPeso{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span{
+    margin-left: 10px;
+  }
+}
+
 .temperamentosContenedor{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: start;
   width: 90%;
-  height: 15%;
+  height: 20%;
 }
 
 .temperamento{
@@ -39,6 +49,8 @@
   margin: 1px 1px;
   border-radius: 5px;
   padding: 0.5px 4px;
-  height: 35%;
   font-size: 0.8em;
+  width: fit-content;
+  height: 1.5rem;
+  margin-right: 2px;
 }
