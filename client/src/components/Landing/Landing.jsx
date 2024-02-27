@@ -19,7 +19,7 @@ export default function Landing() {
       <div className='landingBloque2'>
         <img src="../../../public/portada1.png" alt="" className='img1'/>
         <img src="../../../public/portada2.png" alt="" className='img2'/>
-        <img src="https://i.pinimg.com/564x/4a/95/72/4a9572d9e2c8cfca9ebea5c2b1a62f6c.jpg" alt="" className='img3'/>
+        <img src="../../../public/portada3.png" alt="" className='img3'/>
       </div>
     </div>
   )

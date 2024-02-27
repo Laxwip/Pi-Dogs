@@ -17,6 +17,23 @@ export default function NavBar({name, handleChange}) {
         <h1>PI DOGS</h1>
         <img src="../../../public/pata.png" alt="Huella de perro" className='huella'/>
       </div>
+      <div className='navBarCentro'>
+        <div className='ordenamiento'>
+          <label htmlFor="">Ordenamiento: </label>
+          <select name="" id="">
+            <option value="">-</option>
+          </select>
+        </div>
+        <div className='filtro'>
+          <label htmlFor="">Filtros: </label>
+          <select name="" id="">
+            <option value="">-</option>
+          </select>
+          <select name="" id="">
+            <option value="">-</option>
+          </select>
+        </div>
+      </div>
       <div className='navBarDerecha'>
         <input
         id='search_input'

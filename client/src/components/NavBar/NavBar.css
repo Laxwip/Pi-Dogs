@@ -38,15 +38,24 @@ h1{
   display: flex;
   justify-content: start;
   align-items: center;
-  width: 50%;
+  width: 33%;
   height: 100%;
   padding-left: 5%;
 }
+
+.navBarCentro{
+  width: 33%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .navBarDerecha{
   display: flex;
   justify-content: end;
   align-items: center;
-  width: 50%;
+  width: 33%;
   height: 100%;
   padding-right: 5%;
 }
