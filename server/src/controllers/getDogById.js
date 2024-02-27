@@ -66,7 +66,7 @@ const getDogsById = async (req, res) => {
       nombre: dataDb.nombre,
       altura: dataDb.altura,
       peso: dataDb.peso,
-      temperaments: dataDb.temperaments?.map(temperament => temperament.nombre),
+      temperamentos: dataDb.temperaments?.map(temperament => temperament.nombre),
       añosDeVida: dataDb.añosDeVida,
       origen: "db"
     };

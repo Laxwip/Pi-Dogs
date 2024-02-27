@@ -6,6 +6,7 @@ import NavBar from './components/NavBar/NavBar'
 import { useState } from 'react'
 import axios from "axios"
 import Details from './components/Details/Details'
+import Form from './components/Form/Form'
 
 function App() {
 
@@ -57,6 +58,18 @@ function App() {
           </div>
           <Details></Details>
           </div>}
+        ></Route>
+
+        <Route
+        path='/form'
+        element={<div className='Form'>
+          <div className='ButtonHome'>
+            <Link to = {"/home"}>
+              <button>⬅</button>
+            </Link>
+          </div>
+          <Form></Form>
+        </div>}
         ></Route>
 
       </Routes>
