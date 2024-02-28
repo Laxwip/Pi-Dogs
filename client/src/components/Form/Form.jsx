@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import "./Form.css";
 import axios from "axios";
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllTemperaments } from '../../redux/actions/actions';
 
 export default function Form() {
   const [valor, setValor] = useState({
@@ -12,27 +14,21 @@ export default function Form() {
     añosDeVida: "",
   })
 
-  const [temperamentos, setTemperamentos] = useState([]);
   const [temperamentosSeleccionados, setTemperamentosSeleccionados] = useState([]);
 
-
+  const allTemperaments = useSelector((state) => state.allTemperaments)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    async function fetchTemperamentos() {
+    const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3001/temperaments');
-        if (!response.ok) {
-          throw new Error('Error al obtener los temperamentos');
-        }
-        const data = await response.json();
-        setTemperamentos(data);
+        dispatch(getAllTemperaments())
       } catch (error) {
-        console.error('Error:', error.message);
+        console.error("Erros al cargar los temperamentos: ", error)
       }
     }
-
-    fetchTemperamentos();
-  }, []);
+    fetchData()
+  }, [dispatch])
 
   const handleChange = (event) => {
     const {name, value} = event.target;
@@ -165,7 +161,7 @@ export default function Form() {
           <label htmlFor="temperamentos">Temperamentos: </label>
           <select className="FormSelect" name="temperamentos" id="temperamentos" onChange={handleSelectChange}>
             <option value="default">-</option>
-            {temperamentos.map(temp => (
+            {allTemperaments.map(temp => (
               <option key={temp.id} value={temp.nombre}>{temp.nombre}</option>
             ))}
           </select>

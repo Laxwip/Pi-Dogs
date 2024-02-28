@@ -1,4 +1,4 @@
-import { GET_ALL_DOGS, GET_DOG_BY_NAME, GET_DOG_BY_ID, CLEAN_DETAIL, ORDER_DOG, FILTER_TEMPERAMENT, FILTER_ORIGIN } from "./action-types";
+import { GET_ALL_DOGS, GET_DOG_BY_NAME, GET_DOG_BY_ID, CLEAN_DETAIL, ORDER_DOG, FILTER_TEMPERAMENT, FILTER_ORIGIN, GET_ALL_TEMPERAMENTS } from "./action-types";
 import axios from "axios";
 
 export function getAllDogs(){
@@ -13,6 +13,19 @@ export function getAllDogs(){
       return dispatch({type: GET_ALL_DOGS, payload: allData})
     } catch (error) {
       console.log(error)
+    }
+  }
+}
+
+export function getAllTemperaments(){
+  return async (dispatch) => {
+    try {
+      const {data} = await axios.get(`http://localhost:3001/temperaments`)
+      // const allTemperament =  data.map((temperament) => temperament?.nombre)
+
+      return dispatch({type: GET_ALL_TEMPERAMENTS, payload: data})
+    } catch (error) {
+      console.log(error);
     }
   }
 }

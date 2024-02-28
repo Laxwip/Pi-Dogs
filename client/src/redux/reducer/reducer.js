@@ -1,8 +1,10 @@
-import { CLEAN_DETAIL, FILTER_ORIGIN, FILTER_TEMPERAMENT, GET_ALL_DOGS, GET_DOG_BY_ID, GET_DOG_BY_NAME, ORDER_DOG } from "../actions/action-types";
+import { CLEAN_DETAIL, FILTER_ORIGIN, FILTER_TEMPERAMENT, GET_ALL_DOGS, GET_ALL_TEMPERAMENTS, GET_DOG_BY_ID, GET_DOG_BY_NAME, ORDER_DOG } from "../actions/action-types";
 
 const inicialState = {
   allDogs: [],
   allDogsCopy: [],
+  allTemperaments: [],
+  allTemperamentsCopy: [],
   detailDog: {},
   filterTemperament: "default",
   filterOrigin: "default",
@@ -15,6 +17,12 @@ function reducer(state = inicialState, action){
         ...state,
         allDogs: action.payload,
         allDogsCopy: action.payload,
+      }
+    case GET_ALL_TEMPERAMENTS:
+      return {
+        ...state,
+        allTemperaments: action.payload,
+        allTemperamentsCopy: action.payload,
       }
     case GET_DOG_BY_NAME:
       return{
