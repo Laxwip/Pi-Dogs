@@ -1,30 +1,22 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux';
 import "./Details.css"
+import { cleanDetail, getDogById } from '../../redux/actions/actions';
 
 export default function Details() {
   const {origen, id} = useParams()
-  const [perro, setPerro] = useState({})
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const {data} = await axios.get(`http://localhost:3001/dogs/${id}`)
-        setPerro(data)
-      } catch (error) {
-        console.error("Error:", error)
-      }
+  const perroFinal = useSelector((state) => state.detailDog)
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch(getDogById(origen, id))
+
+    return () =>{
+      dispatch(cleanDetail())
     }
-    fetchData()
-  },[id]);
+  },[dispatch, id])
 
-  let perroFinal = {}
-
-  if(origen === "api"){
-    perroFinal = perro?.apiResults
-  } else if (origen === "db") {
-    perroFinal = perro?.dbResults
-  }
   return (
     <div className='DetailsContenedorGeneral'>
       <div className='DetailsContenedorImg'>

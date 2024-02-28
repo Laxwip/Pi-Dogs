@@ -14,9 +14,9 @@
 
     button{
       background-color: orange;
-      font-size: 2rem;
-      height: 2rem;
-      width: 1rem;
+      font-size: 1.7rem;
+      height: 3rem;
+      width: 20%;
       border-radius: 5rem;
       display: flex;
       align-items: center;
@@ -43,7 +43,17 @@
   }
 }
 
-.cargando{
+.contenedorCargando{
+  width: 120%;
+  height: 120%;
+  border: 2px solid orange;
+  border-radius: 120%;
+  background-color: white;
   position: relative;
   top: 150%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+

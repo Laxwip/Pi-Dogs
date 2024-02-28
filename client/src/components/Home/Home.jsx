@@ -2,10 +2,10 @@ import React from 'react'
 import Cards from '../Cards/Cards'
 import "./Home.css"
 
-export default function Home({ dogsResult ,name}) {
+export default function Home() {
   return (
     <div className='homeContenedor'>
-      <Cards dogsResult = { dogsResult } name = {name}></Cards>
+      <Cards></Cards>
       <div className='espaciado'></div>
     </div>
   )

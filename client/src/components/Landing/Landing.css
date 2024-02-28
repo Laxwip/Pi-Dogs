@@ -1,9 +1,10 @@
 .landingContenedorGeneral{
-  width: 100%;
+  width: 100vw;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: start;
+  position: fixed;
 }
 .landingContenedorGeneral::before{
   content: "";
@@ -18,7 +19,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  filter: blur(2px);
+  filter: blur(0.5px);
   z-index: -1;
 }
 

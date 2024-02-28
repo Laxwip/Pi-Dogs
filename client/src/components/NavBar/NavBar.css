@@ -38,24 +38,52 @@ h1{
   display: flex;
   justify-content: start;
   align-items: center;
-  width: 33%;
+  width: 20%;
   height: 100%;
   padding-left: 5%;
 }
 
 .navBarCentro{
-  width: 33%;
+  width:  60%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  select{
+    appearance: none;
+    background-color: white;
+    border: orange;
+    width: 35%;
+    margin-right: 1%;
+    color: black;
+    text-align: center;
+    height: 1.3rem;
+    border-radius: 1rem;
+
+  }
+
+  select:focus{
+    outline: none;
+    appearance: none;
+    background-color: orange;
+    border: 2px solid white;
+    color: white;
+  }
+
+  .ordenamiento{
+    width: 50%;
+  }
+  .filtro{
+    width: 50%;
+  }
 }
 
 .navBarDerecha{
   display: flex;
   justify-content: end;
   align-items: center;
-  width: 33%;
+  width: 20%;
   height: 100%;
   padding-right: 5%;
 }

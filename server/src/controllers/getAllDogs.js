@@ -51,7 +51,7 @@ const getAllDogs = async (req, res) => {
       /*
         Por cada perro, verificamos si existen temperamentos y los separamos por las comas añadiendose en un array que nos será de utilidad al manejar la informacion
       */
-      newTemperament = dog?.temperament?.split(",")
+      newTemperament = dog?.temperament?.split(",").map(temperament => temperament.trim());
       const newDog = {
         id: dog.id,
         imagen: dog.image.url,
