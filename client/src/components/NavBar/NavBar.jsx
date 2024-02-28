@@ -1,13 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./NavBar.css"
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
-import { filterOrigin, filterTemperament, getDogByName, orderDog } from '../../redux/actions/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { filterOrigin, filterTemperament, getAllTemperaments, getDogByName, orderDog } from '../../redux/actions/actions';
 
 export default function NavBar() {
 
   const dispatch = useDispatch();
   const [name, setName] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        dispatch(getAllTemperaments())
+      } catch (error) {
+        console.error("Erros al cargar los temperamentos: ", error)
+      }
+    }
+    fetchData()
+  }, [dispatch])
+
+  const allTemperaments = useSelector((state) => state.allTemperaments)
 
   const onSearch = (n) =>{
     dispatch(getDogByName(n));
@@ -56,7 +69,9 @@ export default function NavBar() {
           <label htmlFor="temperamentos">Filtros: </label>
           <select name="temperamentos" id="temperamentos" defaultValue={"default"} onChange={handleChangeTemp}>
             <option value="default">-</option>
-            <option value="Happy">Happy</option>
+            {allTemperaments.map(temp => (
+              <option key={temp.id} value={temp.nombre}>{temp.nombre}</option>
+            ))}
           </select>
 
           <select name="origen" id="origen" defaultValue={"default"} onChange={handleChangeOrigin}>

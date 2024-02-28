@@ -12,42 +12,61 @@ function App() {
   
   return (
     <>
+      {/*
+        //+ NAVBAR
+      */}
       {location.pathname === "/home" ? <NavBar></NavBar> : null}
 
       <Routes>
 
+        {/*
+          //+ LANDING
+        */}
         <Route 
         path='/' 
         element={<Landing></Landing>}
         ></Route>
-
+        
+        {/*
+          //+ HOME
+        */}
         <Route
         path='/home'
         element={<Home></Home>}
         ></Route>
-
+        
+        {/*
+          //+ DETAILS
+        */}
         <Route
         path='/detail/:origen/:id'
-        element={<div className='Details'>
+        element={
+        <div className='Details'>
           <div className='ButtonHome'>
             <Link to = {"/home"}>
               <button>⬅</button>
             </Link>
           </div>
           <Details></Details>
-          </div>}
+        </div>
+        }
         ></Route>
-
+        
+        {/*
+          //+ FORM
+        */}
         <Route
         path='/form'
-        element={<div className='Form'>
+        element={
+        <div className='Form'>
           <div className='ButtonHome'>
             <Link to = {"/home"}>
               <button>⬅</button>
             </Link>
           </div>
           <Form></Form>
-        </div>}
+        </div>
+        }
         ></Route>
 
       </Routes>

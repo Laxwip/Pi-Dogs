@@ -1,14 +1,5 @@
-//+ Requerimientos
-/*
-  Usamos la libreria axios para realizar solicitudes http
-*/
 const axios = require('axios');
-/*
-  Requerimos el modelo Temperament de la DB
-*/
 const { Temperament } = require('../db.js');
-
-//+ Funcion
 
 const getAllTemperaments = async (req, res) => {
   try {
@@ -62,6 +53,7 @@ const getAllTemperaments = async (req, res) => {
     res.status(200).send(allTemperaments)
   } catch (error) {
     console.error(error)
+    res.status(400).send("Error al guardar los temperamentos", error.message)
   }
 }
 

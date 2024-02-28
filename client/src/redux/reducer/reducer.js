@@ -85,7 +85,7 @@ function reducer(state = inicialState, action){
       }
     case FILTER_TEMPERAMENT:
       if(state.filterOrigin !== "default"){
-        const allDogsFilterOrigin = state.filterOrigin === "api" ? [...state.allDogsCopy].filter((dog) => dog?.origen === "api") : [...state.allDogsCopy].filter((dog) => dog?.origen === "db");
+        const allDogsFilterOrigin = state.filterOrigin === "api" ? [...state.allDogs].filter((dog) => dog?.origen === "api") : [...state.allDogs].filter((dog) => dog?.origen === "db");
         const allDogsFilterTemperament = action.payload === "default" ? allDogsFilterOrigin : allDogsFilterOrigin.filter((dog) => dog?.temperamentos?.some((temperamento) => temperamento === action.payload));
         return {
           ...state,
@@ -93,7 +93,7 @@ function reducer(state = inicialState, action){
           filterTemperament: action.payload
         }
       }else{
-        const allDogsFilterTemperament = action.payload === "default" ? [...state.allDogsCopy] : [...state.allDogsCopy].filter((dog) => dog?.temperamentos?.some((temperamento) => temperamento === action.payload));
+        const allDogsFilterTemperament = action.payload === "default" ? [...state.allDogs] : [...state.allDogs].filter((dog) => dog?.temperamentos?.some((temperamento) => temperamento === action.payload));
         return {
           ...state,
           allDogs: allDogsFilterTemperament,
@@ -102,7 +102,7 @@ function reducer(state = inicialState, action){
       }
     case FILTER_ORIGIN:
       if(state.filterTemperament !== "default"){
-        const allDogsFilterTemperament = [...state.allDogsCopy].filter((dog) => dog.temperamentos.some(temperamento => temperamento === state.filterTemperament));
+        const allDogsFilterTemperament = [...state.allDogs].filter((dog) => dog.temperamentos.some(temperamento => temperamento === state.filterTemperament));
         if(action.payload === "api"){
           const allDogsFilterOrigin = allDogsFilterTemperament.filter((dog) => dog?.origen === "api");
           return {
@@ -120,14 +120,14 @@ function reducer(state = inicialState, action){
         }
       }else{
         if(action.payload === "api"){
-          const allDogsFilterOrigin = action.payload === "default" ? [...state.allDogsCopy] : [...state.allDogsCopy].filter((dog) => dog?.origen === "api")
+          const allDogsFilterOrigin = action.payload === "default" ? [...state.allDogs] : [...state.allDogs].filter((dog) => dog?.origen === "api")
           return {
             ...state,
             allDogs: allDogsFilterOrigin,
             filterOrigin: action.payload
           }
         }else{
-          const allDogsFilterOrigin = action.payload === "default" ? [...state.allDogsCopy] : [...state.allDogsCopy].filter((dog) => dog?.origen === "db")
+          const allDogsFilterOrigin = action.payload === "default" ? [...state.allDogs] : [...state.allDogs].filter((dog) => dog?.origen === "db")
           return {
             ...state,
             allDogs: allDogsFilterOrigin,

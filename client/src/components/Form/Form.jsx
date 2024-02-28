@@ -17,18 +17,18 @@ export default function Form() {
   const [temperamentosSeleccionados, setTemperamentosSeleccionados] = useState([]);
 
   const allTemperaments = useSelector((state) => state.allTemperaments)
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        dispatch(getAllTemperaments())
-      } catch (error) {
-        console.error("Erros al cargar los temperamentos: ", error)
-      }
-    }
-    fetchData()
-  }, [dispatch])
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       dispatch(getAllTemperaments())
+  //     } catch (error) {
+  //       console.error("Erros al cargar los temperamentos: ", error)
+  //     }
+  //   }
+  //   fetchData()
+  // }, [dispatch])
 
   const handleChange = (event) => {
     const {name, value} = event.target;

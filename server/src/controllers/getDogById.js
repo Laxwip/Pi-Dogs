@@ -1,23 +1,8 @@
-//+ Requerimientos
-/*
-  Libreria para realizar solicitudes http
-*/
 const axios = require("axios");
-/*
-  Requerimos las variables de entorno de nuestro archivo .env
-*/
 require('dotenv').config();
-/*
-  Extraemos la variable API_KEY
-*/
 const { API_KEY } = process.env; 
-/*
-  Requerimos el Modelo Dog
-*/
 const { Dog, Temperament } = require('../db.js');
 
-
-//+ Funcion
 
 const getDogsById = async (req, res) => {
   const idParam = req.params.id;

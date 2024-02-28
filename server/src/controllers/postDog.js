@@ -50,7 +50,7 @@ const postDog = async (req, res) => {
     res.send(dogAdded)
   } catch (error) {
     console.error(error)
-    res.status(500).send("Hubo un error al añadir un nuevo perro");
+    res.status(500).send("Hubo un error al añadir un nuevo perro", error.message);
   }
 }
 

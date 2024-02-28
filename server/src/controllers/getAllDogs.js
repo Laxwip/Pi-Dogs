@@ -1,23 +1,8 @@
-//+ Requerimientos
-/*
-  Importamos libreria axios, basada en promesas para realizar solicitudes http
-*/
 const axios = require("axios");
-/*
-  Cargamos las variables de entorno desde nuestro archivo .env
-*/
 require('dotenv').config();
-/*
-  Extraemos la variable API_KEY de el objeto process.env
-*/
 const { API_KEY } = process.env; 
-/*
-  Traemos los modelos para incluirlo en la consulta de todos los perros
-*/
 const { Dog, Temperament } = require('../db.js');
 
-
-//+ Funcion 
 
 const getAllDogs = async (req, res) => {
   try {
@@ -104,7 +89,7 @@ const getAllDogs = async (req, res) => {
     res.status(200).json(response)
   } catch (error) {
     console.error(error)
-    res.status(400).send(error.message)
+    res.status(400).send("Error al obtener los datos de los perros", error.message)
   }
 }
 
