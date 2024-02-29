@@ -69,6 +69,9 @@ export function getDogById(origen, id){
   }
 }
 
+/*
+  sweet alert 2
+*/
 export const cleanDetail = () =>{
   return {type: CLEAN_DETAIL}
 }

@@ -5,7 +5,7 @@ import "./Cards.css"
 import { getAllDogs } from '../../redux/actions/actions';
 
 
-export default function Cards() {
+export default function Cards({setPage, page}) {
 
   const allDogs = useSelector((state) => state.allDogs);
 
@@ -27,7 +27,7 @@ export default function Cards() {
   }, [dispatch]);
 
   //+ PAGINADO
-  const [page, setPage] = useState(1);
+  
   const dogsPerPage = 8;
 
   const startIndex = (page - 1) * dogsPerPage;

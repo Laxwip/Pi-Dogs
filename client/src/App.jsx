@@ -5,17 +5,20 @@ import { Routes, Route, useLocation, Link } from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar'
 import Details from './components/Details/Details'
 import Form from './components/Form/Form'
+import { useState } from 'react'
 
 function App() {
 
   const location = useLocation()
+
+  const [page, setPage] = useState(1);
   
   return (
     <>
       {/*
         //+ NAVBAR
       */}
-      {location.pathname === "/home" ? <NavBar></NavBar> : null}
+      {location.pathname === "/home" ? <NavBar setPage={setPage}></NavBar> : null}
 
       <Routes>
 
@@ -32,7 +35,7 @@ function App() {
         */}
         <Route
         path='/home'
-        element={<Home></Home>}
+        element={<Home setPage={setPage} page={page}></Home>}
         ></Route>
         
         {/*

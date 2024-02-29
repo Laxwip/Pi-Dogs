@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { filterOrigin, filterTemperament, getAllTemperaments, getDogByName, orderDog } from '../../redux/actions/actions';
 
-export default function NavBar() {
+export default function NavBar({setPage}) {
 
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -38,6 +38,7 @@ export default function NavBar() {
 
   const handleChangeTemp = (event)=>{
     dispatch(filterTemperament(event.target.value))
+    setPage(1)
   };
 
   const handleChangeOrigin = (event)=>{
