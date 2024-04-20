@@ -4,6 +4,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import "./Details.css"
 import { cleanDetail, getDogById } from '../../redux/actions/actions';
 import alturaIcon from '../../../public/altura.png';
+import pesoIcon from "../../../public/añosDeVida.png"
+import añosDeVida from "../../../public/añosDeVida.png"
 
 
 export default function Details() {
@@ -35,11 +37,11 @@ export default function Details() {
             <span>{perroFinal?.altura} cm</span>
           </div>
           <div className='DetailsDetailsPeso'>
-            <img src="../../../public/peso.png" alt="icono de peso" width={"30px"} title='Peso'/>
+            <img src={pesoIcon} alt="icono de peso" width={"30px"} title='Peso'/>
             <span>{perroFinal?.peso} kg</span>
           </div>
           <div className='DetailsDetailsAñosDeVida'>
-            <img src="../../../public/añosDeVida.png" alt="icono de años de vida" width={"30px"} title='Años de vida'/>
+            <img src={añosDeVida} alt="icono de años de vida" width={"30px"} title='Años de vida'/>
             <span>{perroFinal?.añosDeVida}</span>
           </div>
         </div>
