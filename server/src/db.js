@@ -19,16 +19,30 @@ const path = require('path');
   Extraemos las variables globales del objeto process
 */
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,
+  DB, DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT, DB_URL
 } = process.env;
 
 /*
   Creando la base de datos
 */
-const Database = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/dogs`, {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-});
+//° CONEXION A LA BASE DE DATOS
+let Database = undefined;
+
+if (process.env.NODE_ENV === "production") {
+  Database = new Sequelize(DB_URL, {
+    logging: false, // set to console.log to see the raw SQL queries
+    native: false,
+    dialectOptions: { ssl: { require: true } }, // lets Sequelize know we can use pg-native for ~30% more speed
+  });
+} else {
+  Database = new Sequelize(
+    `${DB}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+    {
+      logging: false, // set to console.log to see the raw SQL queries
+      native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+    }
+  );
+}
 /*
   Extrae el nombre del archivo de la ruta en la que estamos
 */

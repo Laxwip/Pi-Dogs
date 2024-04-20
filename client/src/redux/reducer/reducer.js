@@ -54,19 +54,38 @@ function reducer(state = inicialState, action){
             allDogs: allDogsDES
           }
         case "menosPeso":
-          const allDogsMenosPeso = [...state.allDogs].sort((a, b) =>{
-            const pesoA = parseInt(a.peso.split(" - ")[1]);
-            const pesoB = parseInt(b.peso.split(" - ")[1]);
-            return pesoA - pesoB;
+          const allDogsMenosPeso = [...state.allDogs].sort((a, b) => {
+            // Dividir la cadena y convertir en números enteros
+            const [pesoAInicio, pesoAFin] = a.peso.split(" - ").map(num => isNaN(parseInt(num)) ? Infinity : parseInt(num));
+            const [pesoBInicio, pesoBFin] = b.peso.split(" - ").map(num => isNaN(parseInt(num)) ? Infinity : parseInt(num));
+          
+            // Si alguno es NaN, lo colocamos al principio
+            if (isNaN(pesoAInicio) || isNaN(pesoBInicio)) {
+              return isNaN(pesoAInicio) ? -1 : 1;
+            }
+          
+            // Comparar la parte izquierda (inicio)
+            if (pesoAInicio !== pesoBInicio) {
+              return pesoAInicio - pesoBInicio; // Ordenar por la parte izquierda
+            } else {
+              // Si la parte izquierda es la misma, comparar la parte derecha (fin)
+              return pesoAFin - pesoBFin; // Ordenar por la parte derecha
+            }
           });
-          return{
+          
+          return {
             ...state,
             allDogs: allDogsMenosPeso
-          }
+          };
+          
+          return {
+            ...state,
+            allDogs: allDogsMenosPeso
+          };
         case "masPeso":
           const allDogsMasPeso = [...state.allDogs].sort((a, b) =>{
-            const pesoA = parseInt(a.peso.split(" - ")[1]);
-            const pesoB = parseInt(b.peso.split(" - ")[1]);
+            const pesoA = parseInt(a.peso.split(" - ")[1] || a.peso.split(" - ")[0]);
+            const pesoB = parseInt(b.peso.split(" - ")[1] || b.peso.split(" - ")[0]);
             return pesoB - pesoA;
           });
           return{
@@ -120,14 +139,14 @@ function reducer(state = inicialState, action){
         }
       }else{
         if(action.payload === "api"){
-          const allDogsFilterOrigin = action.payload === "default" ? [...state.allDogs] : [...state.allDogs].filter((dog) => dog?.origen === "api")
+          const allDogsFilterOrigin = action.payload === "default" ? [...state.allDogsCopy] : [...state.allDogs].filter((dog) => dog?.origen === "api")
           return {
             ...state,
             allDogs: allDogsFilterOrigin,
             filterOrigin: action.payload
           }
         }else{
-          const allDogsFilterOrigin = action.payload === "default" ? [...state.allDogs] : [...state.allDogs].filter((dog) => dog?.origen === "db")
+          const allDogsFilterOrigin = action.payload === "default" ? [...state.allDogsCopy] : [...state.allDogs].filter((dog) => dog?.origen === "db")
           return {
             ...state,
             allDogs: allDogsFilterOrigin,

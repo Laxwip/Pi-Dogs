@@ -13,7 +13,7 @@ const { Database } = require('./src/db.js');
   Se sincroniza la base de datos con el servidor, 
   entonces se inicia el servidor e imprime algo en consola.
 */
-Database.sync({ force: true }).then(() => {
+Database.sync({ alter: true }).then(() => {
   server.listen(3001, () => {
     console.log('Server listening at 3001');
   });

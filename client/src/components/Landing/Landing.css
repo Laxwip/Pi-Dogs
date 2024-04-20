@@ -56,19 +56,28 @@
     border-radius: 30px;
   }
   .img1{
+    width: 400px;
+    height: 200px;
     position: relative;
-    top: 10%;
+    top: 5%;
     border: 3px solid white;
+    object-fit: cover;
   }
   .img2{
+    width: 400px;
+    height: 200px;
     position: relative;
     left: 20%;
     border: 3px solid white;
+    object-fit: cover;
   }
   .img3{
+    width: 400px;
+    height: 200px;
     position: relative;
-    bottom: 10%;
+    bottom: 5%;
     border: 3px solid white;
+    object-fit: cover;
   }
 }
 
