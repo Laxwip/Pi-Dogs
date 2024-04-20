@@ -8,7 +8,7 @@ if (!commitMessage) {
  process.exit(1);
 }
 
-// Ejecuta git add .
+// Ejecuta git add . { stdio: "inherit" } => Nos permite mostrar en consola lo que nos devuelve el comando de git 
 execSync('git add .', { stdio: 'inherit' });
 
 // Ejecuta git commit -m con el mensaje proporcionado
