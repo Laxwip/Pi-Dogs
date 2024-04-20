@@ -108,7 +108,7 @@ export default function Form() {
 
   const handleSave = async () => {
     try {
-      const response = await axios.post('http://localhost:3001/dogs', valor, {
+      const response = await axios.post('https://pi-dogs-nho6.onrender.com/dogs', valor, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -125,7 +125,7 @@ export default function Form() {
     <div className='FormContenedorGeneral'>
       <div className='FormBloque1'>
         <h1>¡Añade tu propio perro!</h1>
-        <img src="../../public/formDog.png" alt="Perrito sobre el form" width={"120px"}/>
+        <img src="formDog.png" alt="Perrito sobre el form" width={"120px"}/>
       </div>
       <div className='FormBloque2'>
         <div className='FormInput'>

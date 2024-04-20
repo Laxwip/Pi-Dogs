@@ -4,7 +4,7 @@ import axios from "axios";
 export function getAllDogs(){
   return async (dispatch) => {
     try {
-      const {data} = (await axios.get(`http://localhost:3001/dogs`));
+      const {data} = (await axios.get(`https://pi-dogs-nho6.onrender.com/dogs`));
 
       const dataApi = data.apiResults
       const dataDb = data.dbResults
@@ -20,7 +20,7 @@ export function getAllDogs(){
 export function getAllTemperaments(){
   return async (dispatch) => {
     try {
-      const {data} = await axios.get(`http://localhost:3001/temperaments`)
+      const {data} = await axios.get(`https://pi-dogs-nho6.onrender.com/temperaments`)
       // const allTemperament =  data.map((temperament) => temperament?.nombre)
 
       return dispatch({type: GET_ALL_TEMPERAMENTS, payload: data})
@@ -36,7 +36,7 @@ export function getDogByName(name){
       return dispatch(getAllDogs());
     }
     try {
-      const {data} = (await axios.get(`http://localhost:3001/dogs/name?name=${name}`));
+      const {data} = (await axios.get(`https://pi-dogs-nho6.onrender.com/dogs/name?name=${name}`));
 
       const dataApi = data.apiResults
       const dataDb = data.dbResults
@@ -52,7 +52,7 @@ export function getDogByName(name){
 export function getDogById(origen, id){
   return async (dispatch) => {
     try {
-      const {data} = await axios.get(`http://localhost:3001/dogs/${id}`)
+      const {data} = await axios.get(`https://pi-dogs-nho6.onrender.com/dogs/${id}`)
 
       let perroFinal = null
 

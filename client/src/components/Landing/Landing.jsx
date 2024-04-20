@@ -1,7 +1,6 @@
 import React from 'react'
 import "./Landing.css"
 import { Link } from 'react-router-dom'
-import "../../../public/portada1.png"
 
 export default function Landing() {
   return (
@@ -17,9 +16,9 @@ export default function Landing() {
         </Link>
       </div>
       <div className='landingBloque2'>
-        <img src="../../../public/portada1.png" alt="" className='img1'/>
-        <img src="../../../public/portada2.png" alt="" className='img2'/>
-        <img src="../../../public/portada3.png" alt="" className='img3'/>
+        <img src="portada1.png" alt="" className='img1'/>
+        <img src="portada2.png" alt="" className='img2'/>
+        <img src="portada3.png" alt="" className='img3'/>
       </div>
     </div>
   )

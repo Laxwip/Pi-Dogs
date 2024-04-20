@@ -55,7 +55,7 @@ export default function Cards({setPage, page}) {
       {
         loading ? (
           <div className='contenedorCargando'>
-            <img src="../../../public/cargando.gif" alt="cargando" width={"200px"} className='cargando'/>
+            <img src="cargando.gif" alt="cargando" width={"200px"} className='cargando'/>
           </div>
           ) : (
           <>

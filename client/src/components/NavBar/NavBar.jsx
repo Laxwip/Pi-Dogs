@@ -49,7 +49,7 @@ export default function NavBar({setPage}) {
     <div className='navbarContenedor'>
       <div className='navBarIzquierda'>
         <h1>PI DOGS</h1>
-        <img src="../../../public/pata.png" alt="Huella de perro" className='huella'/>
+        <img src="pata.png" alt="Huella de perro" className='huella'/>
       </div>
       <div className='navBarCentro'>
         
