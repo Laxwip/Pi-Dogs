@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux';
 import "./Details.css"
 import { cleanDetail, getDogById } from '../../redux/actions/actions';
+import alturaIcon from '../../../public/altura.png';
+
 
 export default function Details() {
   const {origen, id} = useParams()
@@ -29,7 +31,7 @@ export default function Details() {
         <h1>{perroFinal?.nombre}</h1>
         <div className='DetailsDetails'>
           <div className='DetailsDetailsAltura'>
-            <img src="../../../public/altura.png" alt="icono de altura" width={"30px"} title='Altura'/>
+            <img src={alturaIcon} alt="icono de altura" width={"30px"} title='Altura'/>
             <span>{perroFinal?.altura} cm</span>
           </div>
           <div className='DetailsDetailsPeso'>
