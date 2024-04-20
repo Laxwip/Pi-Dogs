@@ -10,6 +10,8 @@ export function getAllDogs(){
       const dataDb = data.dbResults
       const allData = dataApi.concat(dataDb)
 
+      localStorage.setItem('allDogs', JSON.stringify(allData));
+
       return dispatch({type: GET_ALL_DOGS, payload: allData})
     } catch (error) {
       console.log(error)
