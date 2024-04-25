@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import "./Details.css"
 import { cleanDetail, getDogById } from '../../redux/actions/actions';
 import alturaIcon from '../../../public/altura.png';
-import pesoIcon from "../../../public/añosDeVida.png"
+import pesoIcon from "../../../public/peso.png"
 import añosDeVida from "../../../public/añosDeVida.png"
 
 
