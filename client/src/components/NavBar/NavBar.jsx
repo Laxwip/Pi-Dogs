@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import "./NavBar.css"
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { filterOrigin, filterTemperament, getAllTemperaments, getDogByName, orderDog } from '../../redux/actions/actions';
+import "./NavBar.css"
 
-export default function NavBar({setPage}) {
-
+export default function NavBar({ setPage }) {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
+  // Datos globales del estado de Redux
+  const allTemperaments = useSelector((state) => state.allTemperaments)
+  const temperament = useSelector((state) => state.filterTemperament)
 
+  // Almacenamos desde la API en el estado global todos los perros, y se requieren para renderizar en las Cards
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -18,30 +21,46 @@ export default function NavBar({setPage}) {
       }
     }
     fetchData()
-  }, [dispatch])
+  }, [])
 
-  const allTemperaments = useSelector((state) => state.allTemperaments)
+  // Requerimos el temperamento seleccionado y lo despachamos
+  useEffect(() => {
+    const savedTemperament = localStorage.getItem("selectedTemperament");
+    if (savedTemperament) {
+      try {
+        dispatch(filterTemperament(savedTemperament));
+      } catch (error) {
+        console.error("Error al aplicar el temperamento:", error);
+      }
+    }
+  }, []);
 
-  const onSearch = (n) =>{
-    dispatch(getDogByName(n));
+  // Buscamos al perro por el nombre
+  const onSearch = (name) =>{
+    dispatch(getDogByName(name));
   }
 
-  const handleChange = (e) =>{
-    const newName = e.target.value;
+  // Identificamos lo que escribe el usuario, lo guardamos localmente para mostrarlo y enviamos ese nombre al onSearch
+  const handlerChange = (event) =>{
+    const newName = event.target.value;
     setName(newName)
     onSearch(newName)
   }
 
-  const handlerChange = (event) =>{
+  const handlerChangeOrder = (event) =>{
     dispatch(orderDog(event.target.value));
   }
 
-  const handleChangeTemp = (event)=>{
-    dispatch(filterTemperament(event.target.value))
+  const handlerChangeTemp = (event)=>{
+    const selectedTemperament = temperament || event.target.value 
+    console.log(selectedTemperament);
+    dispatch(filterTemperament(selectedTemperament))
     setPage(1)
+
+    localStorage.setItem("selectedTemperament", selectedTemperament)
   };
 
-  const handleChangeOrigin = (event)=>{
+  const handlerChangeOrigin = (event)=>{
       dispatch(filterOrigin(event.target.value))
   };
 
@@ -56,7 +75,7 @@ export default function NavBar({setPage}) {
         <div className='ordenamiento'>
           
           <label htmlFor="ordenamiento">Ordenamiento: </label>
-          <select name="ordenamiento" id="ordenamiento" defaultValue={"default"} onChange={handlerChange}>
+          <select name="ordenamiento" id="ordenamiento" defaultValue={"default"} onChange={handlerChangeOrder}>
             <option value="default">-</option>
             <option value="ascendente">A-Z</option>
             <option value="descendente">Z-A</option>
@@ -68,14 +87,14 @@ export default function NavBar({setPage}) {
         <div className='filtro'>
 
           <label htmlFor="temperamentos">Filtros: </label>
-          <select name="temperamentos" id="temperamentos" defaultValue={"default"} onChange={handleChangeTemp}>
+          <select name="temperamentos" id="temperamentos" defaultValue={temperament} onChange={handlerChangeTemp}>
             <option value="default">-</option>
             {allTemperaments.map(temp => (
               <option key={temp.id} value={temp.nombre}>{temp.nombre}</option>
             ))}
           </select>
 
-          <select name="origen" id="origen" defaultValue={"default"} onChange={handleChangeOrigin}>
+          <select name="origen" id="origen" defaultValue={"default"} onChange={handlerChangeOrigin}>
             <option value="default">-</option>
             <option value="api">Api</option>
             <option value="db">Db</option>
@@ -90,7 +109,7 @@ export default function NavBar({setPage}) {
         type="text" 
         placeholder='Search...'
         value={name}
-        onChange={handleChange}
+        onChange={handlerChange}
         // onKeyUp={handleKeyUp}
         /> 
         <Link to={"/form"}>

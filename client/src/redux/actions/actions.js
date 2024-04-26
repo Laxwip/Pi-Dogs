@@ -86,6 +86,7 @@ export const orderDog = (order) =>{
 
 export const filterTemperament = (temperament) => {
   return function(dispatch){
+    // localStorage.setItem('temperament', JSON.stringify(temperament));
     return dispatch({type: FILTER_TEMPERAMENT, payload: temperament})
   }
 }
