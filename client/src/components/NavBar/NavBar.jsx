@@ -25,7 +25,7 @@ export default function NavBar({ setPage }) {
 
   // Requerimos el temperamento seleccionado y lo despachamos
   useEffect(() => {
-    const savedTemperament = localStorage.getItem("selectedTemperament");
+    const savedTemperament = JSON.parse(localStorage.getItem("selectedTemperament"));
     if (savedTemperament) {
       try {
         dispatch(filterTemperament(savedTemperament));
@@ -47,12 +47,16 @@ export default function NavBar({ setPage }) {
     onSearch(newName)
   }
 
+  // Identificamos el valor de ordenamiendo elegido
   const handlerChangeOrder = (event) =>{
     dispatch(orderDog(event.target.value));
   }
 
-  const handlerChangeTemp = (event)=>{
-    const selectedTemperament = temperament || event.target.value 
+  // Identificamos el valor de temperamento elegido
+  const handlerChangeTemp = (event) =>{
+    const selectedTemperament = temperament === "default" 
+      ? event.target.value 
+      : temperament;
     console.log(selectedTemperament);
     dispatch(filterTemperament(selectedTemperament))
     setPage(1)
@@ -87,7 +91,7 @@ export default function NavBar({ setPage }) {
         <div className='filtro'>
 
           <label htmlFor="temperamentos">Filtros: </label>
-          <select name="temperamentos" id="temperamentos" defaultValue={temperament} onChange={handlerChangeTemp}>
+          <select name="temperamentos" id="temperamentos" defaultValue={"default"} onChange={handlerChangeTemp}>
             <option value="default">-</option>
             {allTemperaments.map(temp => (
               <option key={temp.id} value={temp.nombre}>{temp.nombre}</option>
