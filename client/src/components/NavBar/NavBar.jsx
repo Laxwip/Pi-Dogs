@@ -64,6 +64,7 @@ export default function NavBar({ setPage }) {
     localStorage.setItem("selectedTemperament", selectedTemperament)
   };
 
+  //Identificamos el valor del origen seleccionado
   const handlerChangeOrigin = (event)=>{
       dispatch(filterOrigin(event.target.value))
   };
