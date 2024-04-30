@@ -16,3 +16,5 @@ execSync(`git commit -m "${commitMessage}"`, { stdio: 'inherit' });
 
 // Ejecuta git push
 execSync('git push', { stdio: 'inherit' });
+
+//comment only for github
