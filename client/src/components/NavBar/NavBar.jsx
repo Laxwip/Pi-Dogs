@@ -53,6 +53,7 @@ export default function NavBar({ setPage }) {
   }
 
   // Identificamos el valor de temperamento elegido
+  // Identificamos el valor de temperamento elegido
   const handlerChangeTemp = (event) =>{
     const selectedTemperament = temperament === "default" 
       ? event.target.value 
